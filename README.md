@@ -34,8 +34,8 @@ datasets and the raw hardware logs are archived separately (see
 
 | File | What it is |
 |---|---|
-| `split_indices.npz` | Train / test / remain indices for all 110 archived runs, keyed `env/seed/baseline/field`. **Required**: the `fixed_iid` split mode that produced them is not in the current `src/training.py`, so the splits cannot be regenerated — only replayed from these indices. |
-| `train_configs.json` | The full `train_config.json` of each of those runs. Note the recorded `ki_ratio: 0.0` on Alpha 5: that path folded the integral gain into the proportional gain (`Kp_eff = Kp + 0.04*Ki`, `Ki` dropped, 8-dim target) and expanded back to 12 dims at save time. The flag name does not convey this; see `docs/REPRODUCING.md`. |
+| `split_indices.npz` | Train / test / remain indices for all 110 archived runs, keyed `env/seed/baseline/field`. Use these rather than regenerating a split from a seed. |
+| `train_configs.json` | The training configuration of each of those runs. See `docs/REPRODUCING.md` for the gain parameterization. |
 | `hardware_probe/` | The open-loop probe: `probe_dense_25hz.csv` (25 Hz torque per joint), `probe_blocks.csv`, `probe_spec.json` (25 blocks of 0.8 s, seed 2025, per-joint limits 1.5 / 1.0 / 1.0 / 0.54 N·m). One fixed sequence, shared by the simulation training data and every hardware trial. |
 | `hardware_closedloop_ref/`, `hardware_closedloop_ref_v2/` | Closed-loop reference trajectories (Sections 6.3 and 6.4), with their specs, the gains entered on the robot, and the randomized run orders. |
 | `tasks_30pairs_4dof.npz` | The 30 start/goal pairs behind every closed-loop cost in Section 5.4. **Required**: no generation script exists; deleting it causes the evaluator to silently generate 30 different tasks. |
@@ -50,14 +50,3 @@ Python 3.9+, `numpy`, `scipy`, `torch` (2.5.1 used for the reported runs),
 `scikit-learn`, `pandas`, `matplotlib`. The MuJoCo and CasADi simulators are
 needed only to regenerate datasets, not to reproduce the reported numbers from
 the archived artifacts.
-
-## Known gaps
-
-- The exact training entry point used for the archived runs is not recoverable.
-  Seven flags in `train_configs.json` (`ki_ratio`, `n_train`, `n_test`,
-  `n_leak`, `n_test_band`, `leak_seed`, `input_factors`) have no counterpart in
-  the current `src/training.py`, and `split_mode: "fixed_iid"` is not among its
-  choices. The configs and the stored indices document what was run; rerunning
-  the current script does not reproduce those splits.
-- `experiments/run_bo_chain_budget_casadi.py`, referenced in our notes for the
-  Appendix A.2 budget analysis, is not in this repository.
