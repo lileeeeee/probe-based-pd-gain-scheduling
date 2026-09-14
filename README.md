@@ -50,7 +50,7 @@ reported runs are in `data/train_configs.json`.
 | File | What it is |
 |---|---|
 | `split_indices.npz` | Train / test / remain indices for all 110 archived runs, keyed `env/seed/baseline/field`. Use these rather than regenerating a split from a seed. |
-| `train_configs.json` | The training configuration of each of those runs. See `docs/REPRODUCING.md` for the gain parameterization. |
+| `train_configs.json` | The training configuration of each of those runs. |
 | `hardware_probe/` | The open-loop probe: `probe_dense_25hz.csv` (25 Hz torque per joint), `probe_blocks.csv`, `probe_spec.json` (25 blocks of 0.8 s, seed 2025, per-joint limits 1.5 / 1.0 / 1.0 / 0.54 N·m). One fixed sequence, shared by the simulation training data and every hardware trial. |
 | `hardware_closedloop_ref/`, `hardware_closedloop_ref_v2/` | Closed-loop reference trajectories (Sections 6.3 and 6.4): dense 25 Hz setpoints, waypoints, and specs. `_v2` also carries the gains entered on the robot (`GAINS_TO_ENTER.csv`, and `GAINS_BEFORE_AFTER_CALIBRATION.csv` showing them before and after the per-joint scaling), the pre-registered randomized cell orders, and the run sheet. |
 | `tasks_30pairs_4dof.npz` | The 30 start/goal pairs behind every closed-loop cost in Section 5.4. **Required**: no generation script exists; deleting it causes the evaluator to silently generate 30 different tasks. |
