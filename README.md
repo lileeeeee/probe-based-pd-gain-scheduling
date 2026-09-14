@@ -13,7 +13,6 @@ datasets and the raw hardware logs are archived separately (see
     src/                    training pipeline, models, dataset loaders, splits
     experiments/            scripts that produce specific paper numbers
       hardware_closedloop/  reference generation and trial analysis for Section 6
-    paper_figures/          figure scripts
     data/                   probe sequences, split indices, task set, small results
     docs/                   what lives in the separate data archive, and how to reproduce
 
@@ -28,7 +27,6 @@ datasets and the raw hardware logs are archived separately (see
 | Sec. 5.4, Table 4 (cost asymmetry significance) | `experiments/cost_asymmetry_significance.py` |
 | Sec. 6, Tables 7 and 8 (hardware) | `experiments/hardware_closedloop/analyze_rmse.py` |
 | Sec. 6, hardware gains | `experiments/hardware_closedloop/compute_baseline_gains.py` |
-| Figures | `paper_figures/plot_fig_*.py` |
 
 ## data/
 
