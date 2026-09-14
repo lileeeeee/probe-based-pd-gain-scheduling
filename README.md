@@ -16,6 +16,23 @@ here; they are available from the authors on request.
     data/                   probe sequences, split indices, task set, small results
     docs/                   what lives in the separate data archive, and how to reproduce
 
+## Training
+
+    python -m src.training \
+        --baseline excite_e2e \
+        --bundle-npz data/dataset_casadi.npz \
+        --split-mode iid --split-seed 42 \
+        --duration-frac 0.5 --epochs 300 --batch-size 32 \
+        --lr 1e-3 --weight-decay 1e-4 --val-frac 0.1 --val-seed 1234 \
+        --d-model 160 --nhead 4 --nlayers 3 --ff 320 \
+        --out-dir output/run1
+
+`--baseline` selects both the input representation and the architecture:
+`excite_e2e` for the probe response through a Transformer encoder,
+`paramid_1f` / `paramid_2f_oracle` / `paramid_3f_oracle` for factor lists,
+`excite_e2e_moe_pure` for the mixture-of-experts head. Hyperparameters for the
+reported runs are in `data/train_configs.json`.
+
 ## Which script produces which number
 
 | Paper location | Script |
