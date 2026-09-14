@@ -1,0 +1,14 @@
+# payload 0p57 kg: 12 cells, each = load profile -> settle -> 3 passes. Run in this order. seed 20260907
+# (0 kg: ImplicitID x ref8s_AB_anchor already done at 12:28 today; keep it or rerun in place, your call)
+ 1. Fixed@0kg    x ref12s_AB
+ 2. ImplicitID   x ref4s_AB
+ 3. Explicit-mp  x ref8s_AB_anchor
+ 4. Fixed@0kg    x ref8s_BA
+ 5. Fixed@0kg    x ref8s_AB_anchor
+ 6. Explicit-mp  x ref8s_BA
+ 7. ImplicitID   x ref12s_AB
+ 8. ImplicitID   x ref8s_AB_anchor
+ 9. Explicit-mp  x ref12s_AB
+10. ImplicitID   x ref8s_BA
+11. Fixed@0kg    x ref4s_AB
+12. Explicit-mp  x ref4s_AB

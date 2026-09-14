@@ -1,0 +1,42 @@
+# payload 0p57 kg: PROBE FIRST (1 x 20 s, file -> probe_logs/payload_0p57kg_<ts>.csv), then 39 closed-loop trials in this order.
+# 4 rounds x 9 (ref x baseline) + 3 anchor trials (May's 8 s A->B, one per baseline) mixed into round 1.
+# Stop only at the end of a round. pass index = round number. seed 20260905
+  1  round1  ref8s_BA         C1   -> ref8s_BA/C1_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  2  round1  ref12s_AB        C2   -> ref12s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  3  round1  ref4s_AB         C1   -> ref4s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  4  round1  ref8s_AB_anchor  C1   -> ref8s_AB_anchor/C1_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  5  round1  ref4s_AB         C2   -> ref4s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  6  round1  ref12s_AB        C3   -> ref12s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  7  round1  ref8s_BA         C2   -> ref8s_BA/C2_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  8  round1  ref8s_BA         C3   -> ref8s_BA/C3_0_57/<ts>_payload_0p57kg_..._pass1.csv
+  9  round1  ref8s_AB_anchor  C3   -> ref8s_AB_anchor/C3_0_57/<ts>_payload_0p57kg_..._pass1.csv
+ 10  round1  ref12s_AB        C1   -> ref12s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass1.csv
+ 11  round1  ref4s_AB         C3   -> ref4s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass1.csv
+ 12  round1  ref8s_AB_anchor  C2   -> ref8s_AB_anchor/C2_0_57/<ts>_payload_0p57kg_..._pass1.csv
+ 13  round2  ref4s_AB         C3   -> ref4s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 14  round2  ref12s_AB        C1   -> ref12s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 15  round2  ref4s_AB         C1   -> ref4s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 16  round2  ref4s_AB         C2   -> ref4s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 17  round2  ref12s_AB        C2   -> ref12s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 18  round2  ref8s_BA         C2   -> ref8s_BA/C2_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 19  round2  ref8s_BA         C1   -> ref8s_BA/C1_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 20  round2  ref12s_AB        C3   -> ref12s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 21  round2  ref8s_BA         C3   -> ref8s_BA/C3_0_57/<ts>_payload_0p57kg_..._pass2.csv
+ 22  round3  ref8s_BA         C1   -> ref8s_BA/C1_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 23  round3  ref4s_AB         C1   -> ref4s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 24  round3  ref12s_AB        C1   -> ref12s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 25  round3  ref4s_AB         C3   -> ref4s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 26  round3  ref12s_AB        C3   -> ref12s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 27  round3  ref8s_BA         C3   -> ref8s_BA/C3_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 28  round3  ref12s_AB        C2   -> ref12s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 29  round3  ref8s_BA         C2   -> ref8s_BA/C2_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 30  round3  ref4s_AB         C2   -> ref4s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass3.csv
+ 31  round4  ref4s_AB         C3   -> ref4s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 32  round4  ref4s_AB         C1   -> ref4s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 33  round4  ref12s_AB        C1   -> ref12s_AB/C1_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 34  round4  ref8s_BA         C2   -> ref8s_BA/C2_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 35  round4  ref4s_AB         C2   -> ref4s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 36  round4  ref8s_BA         C1   -> ref8s_BA/C1_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 37  round4  ref8s_BA         C3   -> ref8s_BA/C3_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 38  round4  ref12s_AB        C3   -> ref12s_AB/C3_0_57/<ts>_payload_0p57kg_..._pass4.csv
+ 39  round4  ref12s_AB        C2   -> ref12s_AB/C2_0_57/<ts>_payload_0p57kg_..._pass4.csv

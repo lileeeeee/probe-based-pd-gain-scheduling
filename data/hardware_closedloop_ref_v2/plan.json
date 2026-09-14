@@ -1,0 +1,21 @@
+{
+ "seed": 20260905,
+ "rounds": 4,
+ "refs": [
+  "ref4s_AB",
+  "ref8s_BA",
+  "ref12s_AB"
+ ],
+ "anchor": "ref8s_AB_anchor (May reference, 1 trial per baseline per payload, round 1)",
+ "baselines": [
+  "C1",
+  "C2",
+  "C3"
+ ],
+ "payloads": [
+  "0p00",
+  "0p38",
+  "0p57"
+ ],
+ "probe": "1 per payload, before closed loop, not used for gains"
+}

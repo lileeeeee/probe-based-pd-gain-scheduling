@@ -1,0 +1,25 @@
+{
+  "duration_sec": 8.0,
+  "n_samples_25hz": 200,
+  "sim_dt": 0.04,
+  "n_return_cycles": 0,
+  "T_seg_sec": 8.0,
+  "t_dwell_sec": 0.0,
+  "q_A_rad": [
+    3.8,
+    1.0,
+    0.7,
+    2.4
+  ],
+  "q_B_rad": [
+    3.1,
+    0.7,
+    0.4,
+    2.1
+  ],
+  "joint_ordering": "alpha5 4-DoF: axis_e (base) \u2192 axis_d \u2192 axis_c \u2192 axis_b (wrist)",
+  "schedule": "single quintic(8s) q_A \u2192 q_B",
+  "interpolant": "5th-order quintic, s(\u03c4)=10\u03c4\u00b3-15\u03c4\u2074+6\u03c4\u2075, C\u00b2 with zero start/end velocity & acceleration",
+  "transition_phase_total_sec": 8.0,
+  "note": "Apply q_ref(t), qdot_ref(t) as PD controller setpoint at 25 Hz. Compute trial RMSE over transition phases (the quintic segments). With default settings (no dwells), transition mask covers the entire 8 s trial."
+}

@@ -1,0 +1,63 @@
+# Probe-Based Proportional Derivative Gain Scheduling — code and data
+
+Code, probe sequences, data splits, and evaluation scripts for the Robotica
+submission *Probe-Based Proportional Derivative Gain Scheduling: Factor-List
+Aliasing and Deployment Cost Asymmetry* (ROB-2026-0352).
+
+This repository holds everything small enough to version. The BO-labelled
+datasets and the raw hardware logs are archived separately (see
+`docs/DATA_ARCHIVE.md`); together the two reproduce every number in the paper.
+
+## Layout
+
+    src/                    training pipeline, models, dataset loaders, splits
+    experiments/            scripts that produce specific paper numbers
+      hardware_closedloop/  reference generation and trial analysis for Section 6
+    paper_figures/          figure scripts
+    data/                   probe sequences, split indices, task set, small results
+    docs/                   what lives in the separate data archive, and how to reproduce
+
+## Which script produces which number
+
+| Paper location | Script |
+|---|---|
+| Sec. 5.2, Table 2 (factor sensitivity) | `experiments/anova_pd_effective.py` |
+| Sec. 5.3, Table 3 and Eq. (3) | `experiments/r2c8_vbin_bootstrap_ci.py`, `experiments/vhid_factorlist_pd.py` |
+| Sec. 5.3, z-normalized bound check | `experiments/r2c3_znorm_bound_check.py` |
+| Sec. 5.3, first-order / total-effect variance shares | `experiments/r2c7_sobol_recompute.py` |
+| Sec. 5.4, Table 4 (cost asymmetry significance) | `experiments/cost_asymmetry_significance.py` |
+| Sec. 6, Tables 7 and 8 (hardware) | `experiments/hardware_closedloop/analyze_rmse.py` |
+| Sec. 6, hardware gains | `experiments/hardware_closedloop/compute_baseline_gains.py` |
+| Figures | `paper_figures/plot_fig_*.py` |
+
+## data/
+
+| File | What it is |
+|---|---|
+| `split_indices.npz` | Train / test / remain indices for all 110 archived runs, keyed `env/seed/baseline/field`. **Required**: the `fixed_iid` split mode that produced them is not in the current `src/training.py`, so the splits cannot be regenerated — only replayed from these indices. |
+| `train_configs.json` | The full `train_config.json` of each of those runs. Note the recorded `ki_ratio: 0.0` on Alpha 5: that path folded the integral gain into the proportional gain (`Kp_eff = Kp + 0.04*Ki`, `Ki` dropped, 8-dim target) and expanded back to 12 dims at save time. The flag name does not convey this; see `docs/REPRODUCING.md`. |
+| `hardware_probe/` | The open-loop probe: `probe_dense_25hz.csv` (25 Hz torque per joint), `probe_blocks.csv`, `probe_spec.json` (25 blocks of 0.8 s, seed 2025, per-joint limits 1.5 / 1.0 / 1.0 / 0.54 N·m). One fixed sequence, shared by the simulation training data and every hardware trial. |
+| `hardware_closedloop_ref/`, `hardware_closedloop_ref_v2/` | Closed-loop reference trajectories (Sections 6.3 and 6.4), with their specs, the gains entered on the robot, and the randomized run orders. |
+| `tasks_30pairs_4dof.npz` | The 30 start/goal pairs behind every closed-loop cost in Section 5.4. **Required**: no generation script exists; deleting it causes the evaluator to silently generate 30 different tasks. |
+| `hardware_closedloop_gains.npz` | Simulation gains per baseline and payload, before the per-joint scaling. |
+| `hardware_closedloop_gain_scaling_may2026.json` | The per-joint scaling actually applied on hardware (Kp x 0.05 / 0.0667 / 0.04 / 0.2, Kd x 0.2), recovered by least squares from the logged torques. No original record of these factors exists. |
+| `casadi2d_iid_cost_30tasks.npz` | Pooled 30-task closed-loop costs behind Table 4. |
+| `r2c7_sobol_recompute.json`, `r1p10_inference_time_deployment_mac.json` | Variance shares per gain dimension; deployment-side inference timing. |
+
+## Environment
+
+Python 3.9+, `numpy`, `scipy`, `torch` (2.5.1 used for the reported runs),
+`scikit-learn`, `pandas`, `matplotlib`. The MuJoCo and CasADi simulators are
+needed only to regenerate datasets, not to reproduce the reported numbers from
+the archived artifacts.
+
+## Known gaps
+
+- The exact training entry point used for the archived runs is not recoverable.
+  Seven flags in `train_configs.json` (`ki_ratio`, `n_train`, `n_test`,
+  `n_leak`, `n_test_band`, `leak_seed`, `input_factors`) have no counterpart in
+  the current `src/training.py`, and `split_mode: "fixed_iid"` is not among its
+  choices. The configs and the stored indices document what was run; rerunning
+  the current script does not reproduce those splits.
+- `experiments/run_bo_chain_budget_casadi.py`, referenced in our notes for the
+  Appendix A.2 budget analysis, is not in this repository.
