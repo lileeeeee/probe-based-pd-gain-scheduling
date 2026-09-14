@@ -1,21 +1,5 @@
 # Reproducing the reported numbers
 
-## Training target
-
-The Alpha 5 scheduler predicts the 8-dimensional PD vector
-`[Kp_eff (4 joints), Kd (4 joints)]`, where
-
-    Kp_eff = Kp + dt * Ki,    dt = 0.04 s (one control step at 25 Hz)
-
-and `Kp`, `Ki`, `Kd` are the columns of `gains` in the dataset. The closed-loop
-cost kernel applies the integral term as `Ki * e * dt` without accumulation, so
-`(Kp, Ki, Kd)` and `(Kp_eff, 0, Kd)` are the same controller and the reduction
-is exact. Archived `predictions.npz` files store the 8-dimensional target
-padded back to 12 columns, with the four integral columns zero.
-
-MuJoCo predicts a 14-dimensional `[Kp (7), Kd (7)]` target; its bundle declares
-`ki_ratio = 0.2` and the loader in `src/datasets.py` drops the Ki columns.
-
 ## Splits
 
 Use `data/split_indices.npz`, which stores the `train_idx` / `test_idx` /
