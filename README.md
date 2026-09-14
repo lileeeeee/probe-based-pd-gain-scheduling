@@ -4,9 +4,9 @@ Code, probe sequences, data splits, and evaluation scripts for the Robotica
 submission *Probe-Based Proportional Derivative Gain Scheduling: Factor-List
 Aliasing and Deployment Cost Asymmetry* (ROB-2026-0352).
 
-This repository holds everything small enough to version. The BO-labelled
-datasets and the raw hardware logs are archived separately (see
-`docs/DATA_ARCHIVE.md`); together the two reproduce every number in the paper.
+This repository holds the implementation, the probe sequences, and the data
+splits. The BO-labelled datasets and the raw hardware logs are not included
+here; they are available from the authors on request.
 
 ## Layout
 
@@ -48,3 +48,7 @@ Python 3.9+, `numpy`, `scipy`, `torch` (2.5.1 used for the reported runs),
 `scikit-learn`, `pandas`, `matplotlib`. The MuJoCo and CasADi simulators are
 needed only to regenerate datasets, not to reproduce the reported numbers from
 the archived artifacts.
+
+## License
+
+MIT, see `LICENSE`.
